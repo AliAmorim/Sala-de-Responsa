@@ -103,23 +103,27 @@
 
     .conteudoItens{display:contents}
     .conteudoItens-azul.item{
-      border-radius:8px;border:2px solid #e5e5e5;
-      box-shadow:0 2px 8px rgba(0,0,0,0.08);
-      transition:background-color .3s ease,border-color .3s ease;
-      display:flex;flex-direction:column;gap:3px;
+      border-radius:12px;border:1px solid #eef0f2;
+      box-shadow:0 1px 3px rgba(0,0,0,0.04);
+      transition:box-shadow .25s ease,transform .25s ease,border-color .25s ease;
+      display:flex;flex-direction:column;gap:4px;
       flex:1 0 0;align-self:stretch;width:100%;
-      padding:12px 15px;background:#fff;
-      text-decoration:none
+      padding:18px 20px;background:#fff;
+      text-decoration:none;position:relative;overflow:hidden
     }
-    .card-turma{cursor:pointer;display:flex;flex-direction:column;gap:6px}
+    .conteudoItens-azul.item::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:4px;
+      background:linear-gradient(90deg,#8E5CF7,#b388ff);border-radius:12px 12px 0 0
+    }
+    .card-turma{cursor:pointer;display:flex;flex-direction:column;gap:8px;position:relative;z-index:1}
 
-    .card-status-dot{width:8px;height:8px;border-radius:50%;background:#2e7d32;display:inline-block}
-    .card-status-label{font-size:11px;font-weight:600;color:#2e7d32;text-transform:uppercase}
-    .card-turma-nome{font-size:14px;font-weight:600;color:#111;line-height:normal;text-overflow:ellipsis;font-style:normal}
-    .card-turma-tipo-ensino{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--mid)}
-    .card-turma-tipo-ensino .icon-info{width:14px;height:14px;border-radius:50%;background:#6b6b6b;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .card-turma-extra{font-size:12px;color:#333;font-weight:600;margin-top:2px}
-    .conteudoItens-azul .item:hover{box-shadow:0 2px 12px rgba(142,92,247,0.25)}
+    .card-turma-nome{font-size:15px;font-weight:600;color:#111;line-height:1.4;text-overflow:ellipsis}
+    .card-turma-nome .disciplina-meta{font-weight:400;font-size:13px;color:#6b6b6b}
+    .card-turma-tipo-ensino{display:flex;align-items:center;gap:6px;font-size:12px;color:#6b6b6b}
+    .card-turma-tipo-ensino .icon-info{width:16px;height:16px;border-radius:50%;background:#8E5CF7;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .card-turma-extra{font-size:12px;color:#444;margin-top:4px}
+    .card-turma-extra i{color:#8E5CF7;width:16px;text-align:center}
+    .conteudoItens-azul .item:hover{box-shadow:0 4px 16px rgba(142,92,247,0.15);transform:translateY(-2px);border-color:#d0b0ff}
 
     .empty-state{text-align:center;padding:60px 20px;color:var(--light)}
     .empty-state i{font-size:48px;color:#ddd;margin-bottom:12px;display:block}
@@ -145,7 +149,7 @@
     .modal-sub{font-size:12px;color:var(--light);margin-top:1px}
     .modal-close{width:36px;height:36px;border-radius:50%;border:none;background:#f5f6fa;color:var(--mid);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
     .modal-close:hover{background:#e8eaf0}
-    .modal-body{padding:0 24px}
+    .modal-body{padding:0 24px;overflow-y:auto;max-height:60vh}
     .modal-student-header{display:flex;align-items:center;padding:14px 0 10px;font-size:12px;font-weight:600;color:var(--light);border-bottom:1px solid var(--border)}
     .modal-student-header .s-name{flex:1}
     .modal-student-header .s-view{width:34px;display:flex;align-items:center;justify-content:center}
@@ -323,6 +327,44 @@
 
     .view-record .vr-delete:hover{opacity:1;background:#fbe9e7}
     .btn-view{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:13px;color:var(--mid);display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+
+    /* RESUMOS */
+    .resumo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding-bottom:24px}
+    .resumo-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px;cursor:pointer;transition:box-shadow .2s,transform .2s}
+    .resumo-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.10);transform:translateY(-2px)}
+    .resumo-card-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .resumo-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .resumo-stat{text-align:center;padding:8px 4px;border-radius:8px;background:var(--bg)}
+    .resumo-stat-value{font-size:20px;font-weight:800;color:var(--text);line-height:1.2}
+    .resumo-stat-label{font-size:10px;color:var(--mid);font-weight:600;text-transform:uppercase;margin-top:2px}
+    .resumo-stat.total .resumo-stat-value{color:var(--navy)}
+    .resumo-stat.resp .resumo-stat-value{color:#2e7d32}
+    .resumo-stat.vac .resumo-stat-value{color:#e65100}
+    .resumo-stat.saldo .resumo-stat-value{color:var(--purple)}
+
+    .resumo-detail{display:none;animation:fadeIn .2s ease}
+    .resumo-detail.active{display:block}
+    .rd-header{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .rd-header h2{font-size:18px;font-weight:700;color:var(--text);margin:0}
+    .rd-table{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px}
+    .rd-th{display:flex;padding:12px 18px;font-size:12px;font-weight:600;color:var(--light);border-bottom:1px solid var(--border);background:#fafbfc}
+    .rd-th .c-nome{flex:2}.rd-th .c-count{width:80px;text-align:center}.rd-th .c-resp{width:80px;text-align:center}.rd-th .c-vac{width:80px;text-align:center}.rd-th .c-saldo{width:80px;text-align:center}
+    .rd-row{display:flex;align-items:center;padding:11px 18px;border-bottom:1px solid #f0f1f4;font-size:14px}
+    .rd-row:last-child{border-bottom:none}
+    .rd-row:hover{background:#fafbff}
+    .rd-row .r-nome{flex:2;font-weight:500;color:var(--text)}
+    .rd-row .r-count{width:80px;text-align:center;color:var(--mid)}
+    .rd-row .r-resp{width:80px;text-align:center;color:#2e7d32;font-weight:700}
+    .rd-row .r-vac{width:80px;text-align:center;color:#e65100;font-weight:700}
+    .rd-row .r-saldo{width:80px;text-align:center;font-weight:700}
+    .rd-row .r-saldo.positivo{color:#2e7d32}
+    .rd-row .r-saldo.negativo{color:#e65100}
+    .rd-row .r-saldo.zero{color:var(--mid)}
+    .rd-footer{background:#fff;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--mid)}
+    .btn-voltar-rd{background:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;cursor:pointer;font-size:13px;font-family:inherit;color:var(--mid);display:inline-flex;align-items:center;gap:6px;transition:background .15s}
+    .btn-voltar-rd:hover{background:var(--bg)}
+    .rd-empty{text-align:center;padding:40px 20px;color:var(--mid);font-size:14px}
+    .rd-empty i{font-size:36px;color:var(--light);display:block;margin-bottom:10px}
     .btn-view:hover{border-color:var(--purple);color:var(--purple);background:#f8f6ff}
     .sv-th .th-view{width:36px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--light)}
     .sv-row .sv-view{width:36px;display:flex;align-items:center;justify-content:center}
@@ -498,16 +540,13 @@
               <div class="filters-row">
               <div class="filter-group">
                 <label for="ano">Ano Letivo</label>
-                <select id="ano">
-                  <option value="">Selecione</option>
-                  <option value="2026">2026</option>
-                  <option value="2025">2025</option>
-                  <option value="2024">2024</option>
+                <select id="ano" disabled style="opacity:.7;cursor:not-allowed">
+                  <option value="2026" selected>2026</option>
                 </select>
               </div>
               <div class="filter-group">
                 <label for="ensino">Tipo de Ensino</label>
-                <select id="ensino">
+                <select id="ensino" onchange="updateTurmaOptions()">
                   <option value="">Selecione</option>
                   <option value="fundamental">Ensino Fundamental</option>
                   <option value="medio">Ensino Médio</option>
@@ -516,15 +555,9 @@
               </div>
               <div class="filter-group">
                 <label for="turma">Turma</label>
-                <select id="turma">
-                  <option value="">Selecione</option>
-                  <option value="1a">1º Ano A</option>
-                  <option value="1b">1º Ano B</option>
-                  <option value="2a">2º Ano A</option>
-                  <option value="2b">2º Ano B</option>
-                  <option value="3a">3º Ano A</option>
-                  <option value="3b">3º Ano B</option>
-                </select>
+              <select id="turma">
+                <option value="">Selecione</option>
+              </select>
               </div>
               <div class="filter-group">
                 <label for="disciplina">Disciplina</label>
@@ -566,10 +599,94 @@
 
         <!-- TAB: RESUMOS -->
         <div id="tab-resumos" class="tab-content">
-          <div class="placeholder-tab">
+          <div class="filters-card">
+            <div class="filters-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8E5CF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+              </svg>
+              Filtros
+              <span class="filters-info">
+                <span class="fi-item"><strong>URE:</strong> Leste 5</span>
+                <span class="fi-item"><strong>Escola:</strong> E. M. Professor João da Silva</span>
+              </span>
+            </div>
+            <div class="filters-row">
+              <div class="filter-group">
+                <label for="r-ano">Ano Letivo</label>
+                <select id="r-ano" disabled style="opacity:.7;cursor:not-allowed">
+                  <option value="2026" selected>2026</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="r-ensino">Tipo de Ensino</label>
+                <select id="r-ensino" onchange="updateRTurmaOptions()">
+                  <option value="">Selecione</option>
+                  <option value="fundamental">Ensino Fundamental</option>
+                  <option value="medio">Ensino Médio</option>
+                  <option value="eja">EJA</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="r-turma">Turma</label>
+                <select id="r-turma">
+                  <option value="">Selecione</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="r-disciplina">Disciplina</label>
+                <select id="r-disciplina">
+                  <option value="">Todas</option>
+                  <option value="matematica">Matemática</option>
+                  <option value="portugues">Língua Portuguesa</option>
+                  <option value="ciencias">Ciências</option>
+                  <option value="historia">História</option>
+                  <option value="geografia">Geografia</option>
+                  <option value="ingles">Inglês</option>
+                  <option value="educacao_fisica">Educação Física</option>
+                  <option value="arte">Arte</option>
+                </select>
+              </div>
+              <button class="btn-filter" onclick="filtrarResumos()">
+                <i class="fa-solid fa-magnifying-glass"></i> Pesquisar
+              </button>
+            </div>
+          </div>
+          <div class="resumo-grid" id="resumoGrid" style="min-height:200px"></div>
+          <div class="resumo-detail" id="resumoDetail">
+            <div class="rd-header">
+              <div>
+                <h2 id="rdTitle">Turma</h2>
+                <div id="rdSub" style="font-size:13px;color:var(--mid);margin-top:3px"></div>
+              </div>
+              <button class="btn-voltar-rd" onclick="closeResumoDetalhado()"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+            </div>
+            <div class="rd-table">
+              <div class="rd-th">
+                <span class="c-nome">Disciplina</span>
+                <span class="c-count">Lanç.</span>
+                <span class="c-resp">Resp.</span>
+                <span class="c-vac">Vac.</span>
+                <span class="c-saldo">Saldo</span>
+              </div>
+              <div id="rdBody"></div>
+            </div>
+            <div class="rd-footer" id="rdFooter"></div>
+            <div class="rd-student-section" id="rdStudentSection" style="display:none;margin-top:16px;border-top:1px solid #e5e5e5;padding-top:16px">
+              <h3 style="font-size:15px;color:#304869;margin:0 0 8px 0;display:flex;align-items:center;gap:6px"><i class="fa-solid fa-user-graduate"></i> Por Aluno</h3>
+              <div class="rd-table">
+                <div class="rd-th">
+                  <span class="r-nome" style="flex:2">Aluno</span>
+                  <span class="r-resp">Resp.</span>
+                  <span class="r-vac">Vac.</span>
+                  <span class="r-saldo">Saldo</span>
+                </div>
+                <div id="rdStudentBody"></div>
+              </div>
+            </div>
+          </div>
+          <div class="empty-state" id="r-emptyState" style="display:none">
             <i class="fa-solid fa-chart-simple"></i>
-            <h3>Resumos</h3>
-            <p>Os resumos de Responsa e Vacilo serão exibidos aqui em breve.</p>
+            <p>Selecione os filtros e clique em <strong>Pesquisar</strong> para visualizar os resumos.</p>
           </div>
         </div>
 
@@ -818,79 +935,154 @@
 
 <script>
   const turmasData = [
-    {
-      nome: "1º Ano A", ensino: "fundamental", turno: "manha",
-      disciplinas: [
-        { nome: "Matemática", id: "matematica", professor: "Prof. Carlos", alunos: 32 },
-        { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Julia", alunos: 30 },
-        { nome: "Ciências", id: "ciencias", professor: "Prof. Roberto", alunos: 28 },
-        { nome: "História", id: "historia", professor: "Profa. Ana", alunos: 31 }
-      ]
-    },
-    {
-      nome: "1º Ano B", ensino: "fundamental", turno: "manha",
-      disciplinas: [
-        { nome: "Matemática", id: "matematica", professor: "Prof. Ricardo", alunos: 30 },
-        { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Julia", alunos: 29 },
-        { nome: "Geografia", id: "geografia", professor: "Prof. Marcos", alunos: 28 },
-        { nome: "Inglês", id: "ingles", professor: "Profa. Sofia", alunos: 27 }
-      ]
-    },
-    {
-      nome: "2º Ano A", ensino: "fundamental", turno: "tarde",
-      disciplinas: [
-        { nome: "Matemática", id: "matematica", professor: "Prof. Roberto", alunos: 28 },
-        { nome: "Ciências", id: "ciencias", professor: "Profa. Carla", alunos: 26 },
-        { nome: "História", id: "historia", professor: "Prof. Daniel", alunos: 27 },
-        { nome: "Educação Física", id: "educacao_fisica", professor: "Prof. Thiago", alunos: 28 }
-      ]
-    },
-    {
-      nome: "2º Ano B", ensino: "fundamental", turno: "tarde",
-      disciplinas: [
-        { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Ana", alunos: 31 },
-        { nome: "Matemática", id: "matematica", professor: "Prof. Carlos", alunos: 30 },
-        { nome: "Arte", id: "arte", professor: "Profa. Beatriz", alunos: 29 },
-        { nome: "Inglês", id: "ingles", professor: "Prof. James", alunos: 28 }
-      ]
-    },
-    {
-      nome: "3º Ano A", ensino: "medio", turno: "manha",
-      disciplinas: [
-        { nome: "Matemática", id: "matematica", professor: "Profa. Marcia", alunos: 35 },
-        { nome: "Língua Portuguesa", id: "portugues", professor: "Prof. Eduardo", alunos: 34 },
-        { nome: "História", id: "historia", professor: "Prof. Rafael", alunos: 33 },
-        { nome: "Geografia", id: "geografia", professor: "Profa. Patricia", alunos: 32 }
-      ]
-    },
-    {
-      nome: "3º Ano B", ensino: "medio", turno: "manha",
-      disciplinas: [
-        { nome: "Língua Portuguesa", id: "portugues", professor: "Prof. Eduardo", alunos: 33 },
-        { nome: "Ciências", id: "ciencias", professor: "Profa. Camila", alunos: 32 },
-        { nome: "Educação Física", id: "educacao_fisica", professor: "Prof. Thiago", alunos: 31 },
-        { nome: "Matemática", id: "matematica", professor: "Profa. Marcia", alunos: 30 }
-      ]
-    },
-    {
-      nome: "1º Ano A", ensino: "medio", turno: "noite",
-      disciplinas: [
-        { nome: "Geografia", id: "geografia", professor: "Profa. Patricia", alunos: 29 },
-        { nome: "História", id: "historia", professor: "Prof. Rafael", alunos: 28 },
-        { nome: "Matemática", id: "matematica", professor: "Prof. Marcelo", alunos: 27 },
-        { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Julia", alunos: 26 }
-      ]
-    },
-    {
-      nome: "2º Ano B", ensino: "medio", turno: "noite",
-      disciplinas: [
-        { nome: "Inglês", id: "ingles", professor: "Prof. Marcelo", alunos: 27 },
-        { nome: "Matemática", id: "matematica", professor: "Prof. Carlos", alunos: 25 },
-        { nome: "Ciências", id: "ciencias", professor: "Profa. Camila", alunos: 24 },
-        { nome: "Arte", id: "arte", professor: "Profa. Beatriz", alunos: 23 }
-      ]
-    }
+    // ── Ensino Fundamental ──
+    { nome: "1º Ano A", ensino: "fundamental", turno: "manha", disciplinas: [
+      { nome: "Matemática", id: "matematica", professor: "Prof. Carlos", alunos: 32 },
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Julia", alunos: 30 },
+      { nome: "Ciências", id: "ciencias", professor: "Prof. Roberto", alunos: 28 },
+      { nome: "História", id: "historia", professor: "Profa. Ana", alunos: 31 }
+    ]},
+    { nome: "1º Ano B", ensino: "fundamental", turno: "manha", disciplinas: [
+      { nome: "Matemática", id: "matematica", professor: "Prof. Ricardo", alunos: 30 },
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Julia", alunos: 29 },
+      { nome: "Geografia", id: "geografia", professor: "Prof. Marcos", alunos: 28 },
+      { nome: "Inglês", id: "ingles", professor: "Profa. Sofia", alunos: 27 }
+    ]},
+    { nome: "2º Ano A", ensino: "fundamental", turno: "tarde", disciplinas: [
+      { nome: "Matemática", id: "matematica", professor: "Prof. Roberto", alunos: 28 },
+      { nome: "Ciências", id: "ciencias", professor: "Profa. Carla", alunos: 26 },
+      { nome: "História", id: "historia", professor: "Prof. Daniel", alunos: 27 },
+      { nome: "Educação Física", id: "educacao_fisica", professor: "Prof. Thiago", alunos: 28 }
+    ]},
+    { nome: "2º Ano B", ensino: "fundamental", turno: "tarde", disciplinas: [
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Ana", alunos: 31 },
+      { nome: "Matemática", id: "matematica", professor: "Prof. Carlos", alunos: 30 },
+      { nome: "Arte", id: "arte", professor: "Profa. Beatriz", alunos: 29 },
+      { nome: "Inglês", id: "ingles", professor: "Prof. James", alunos: 28 }
+    ]},
+    { nome: "3º Ano A", ensino: "fundamental", turno: "manha", disciplinas: [
+      { nome: "Matemática", id: "matematica", professor: "Profa. Marcia", alunos: 33 },
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Prof. Eduardo", alunos: 32 },
+      { nome: "Ciências", id: "ciencias", professor: "Profa. Camila", alunos: 31 },
+      { nome: "História", id: "historia", professor: "Prof. Rafael", alunos: 30 }
+    ]},
+    { nome: "3º Ano B", ensino: "fundamental", turno: "tarde", disciplinas: [
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Ana", alunos: 31 },
+      { nome: "Matemática", id: "matematica", professor: "Prof. Carlos", alunos: 30 },
+      { nome: "Geografia", id: "geografia", professor: "Prof. Marcos", alunos: 29 },
+      { nome: "Inglês", id: "ingles", professor: "Prof. James", alunos: 28 }
+    ]},
+    { nome: "4º Ano A", ensino: "fundamental", turno: "manha", disciplinas: [
+      { nome: "Matemática", id: "matematica", professor: "Prof. Roberto", alunos: 30 },
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Julia", alunos: 29 },
+      { nome: "Ciências", id: "ciencias", professor: "Prof. Daniel", alunos: 28 },
+      { nome: "Arte", id: "arte", professor: "Profa. Beatriz", alunos: 27 }
+    ]},
+    { nome: "4º Ano B", ensino: "fundamental", turno: "tarde", disciplinas: [
+      { nome: "Matemática", id: "matematica", professor: "Prof. Ricardo", alunos: 29 },
+      { nome: "História", id: "historia", professor: "Profa. Ana", alunos: 28 },
+      { nome: "Educação Física", id: "educacao_fisica", professor: "Prof. Thiago", alunos: 30 },
+      { nome: "Geografia", id: "geografia", professor: "Prof. Marcos", alunos: 27 }
+    ]},
+    { nome: "5º Ano A", ensino: "fundamental", turno: "manha", disciplinas: [
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Julia", alunos: 31 },
+      { nome: "Matemática", id: "matematica", professor: "Prof. Carlos", alunos: 30 },
+      { nome: "Ciências", id: "ciencias", professor: "Profa. Carla", alunos: 29 },
+      { nome: "História", id: "historia", professor: "Prof. Rafael", alunos: 28 }
+    ]},
+    // ── Ensino Médio ──
+    { nome: "1ª Série A", ensino: "medio", turno: "manha", disciplinas: [
+      { nome: "Matemática", id: "matematica", professor: "Profa. Marcia", alunos: 35 },
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Prof. Eduardo", alunos: 34 },
+      { nome: "História", id: "historia", professor: "Prof. Rafael", alunos: 33 },
+      { nome: "Geografia", id: "geografia", professor: "Profa. Patricia", alunos: 32 }
+    ]},
+    { nome: "1ª Série B", ensino: "medio", turno: "tarde", disciplinas: [
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Prof. Eduardo", alunos: 33 },
+      { nome: "Ciências", id: "ciencias", professor: "Profa. Camila", alunos: 32 },
+      { nome: "Educação Física", id: "educacao_fisica", professor: "Prof. Thiago", alunos: 31 },
+      { nome: "Matemática", id: "matematica", professor: "Profa. Marcia", alunos: 30 }
+    ]},
+    { nome: "2ª Série A", ensino: "medio", turno: "manha", disciplinas: [
+      { nome: "Geografia", id: "geografia", professor: "Profa. Patricia", alunos: 29 },
+      { nome: "História", id: "historia", professor: "Prof. Rafael", alunos: 28 },
+      { nome: "Matemática", id: "matematica", professor: "Prof. Marcelo", alunos: 27 },
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Julia", alunos: 26 }
+    ]},
+    { nome: "2ª Série B", ensino: "medio", turno: "noite", disciplinas: [
+      { nome: "Inglês", id: "ingles", professor: "Prof. Marcelo", alunos: 27 },
+      { nome: "Matemática", id: "matematica", professor: "Prof. Carlos", alunos: 25 },
+      { nome: "Ciências", id: "ciencias", professor: "Profa. Camila", alunos: 24 },
+      { nome: "Arte", id: "arte", professor: "Profa. Beatriz", alunos: 23 }
+    ]},
+    { nome: "3ª Série A", ensino: "medio", turno: "manha", disciplinas: [
+      { nome: "Matemática", id: "matematica", professor: "Prof. Marcelo", alunos: 32 },
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Julia", alunos: 31 },
+      { nome: "História", id: "historia", professor: "Prof. Rafael", alunos: 30 },
+      { nome: "Geografia", id: "geografia", professor: "Profa. Patricia", alunos: 29 }
+    ]},
+    { nome: "3ª Série B", ensino: "medio", turno: "noite", disciplinas: [
+      { nome: "Inglês", id: "ingles", professor: "Prof. Marcelo", alunos: 26 },
+      { nome: "Matemática", id: "matematica", professor: "Prof. Carlos", alunos: 25 },
+      { nome: "Educação Física", id: "educacao_fisica", professor: "Prof. Thiago", alunos: 24 },
+      { nome: "Ciências", id: "ciencias", professor: "Profa. Camila", alunos: 23 }
+    ]},
+    // ── EJA ──
+    { nome: "EJA 1º Segmento A", ensino: "eja", turno: "noite", disciplinas: [
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Tereza", alunos: 22 },
+      { nome: "Matemática", id: "matematica", professor: "Prof. Antonio", alunos: 20 },
+      { nome: "Ciências", id: "ciencias", professor: "Profa. Rosa", alunos: 18 },
+      { nome: "História", id: "historia", professor: "Prof. Paulo", alunos: 19 }
+    ]},
+    { nome: "EJA 2º Segmento A", ensino: "eja", turno: "noite", disciplinas: [
+      { nome: "Matemática", id: "matematica", professor: "Prof. Antonio", alunos: 21 },
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Tereza", alunos: 20 },
+      { nome: "Geografia", id: "geografia", professor: "Profa. Lucia", alunos: 18 },
+      { nome: "Inglês", id: "ingles", professor: "Prof. Kleber", alunos: 17 }
+    ]},
+    { nome: "EJA 3º Segmento A", ensino: "eja", turno: "noite", disciplinas: [
+      { nome: "História", id: "historia", professor: "Prof. Paulo", alunos: 19 },
+      { nome: "Matemática", id: "matematica", professor: "Prof. Antonio", alunos: 18 },
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Tereza", alunos: 17 },
+      { nome: "Arte", id: "arte", professor: "Profa. Sandra", alunos: 16 }
+    ]},
+    { nome: "EJA 4º Segmento B", ensino: "eja", turno: "noite", disciplinas: [
+      { nome: "Educação Física", id: "educacao_fisica", professor: "Prof. Rui", alunos: 20 },
+      { nome: "Matemática", id: "matematica", professor: "Prof. Antonio", alunos: 18 },
+      { nome: "Ciências", id: "ciencias", professor: "Profa. Rosa", alunos: 17 },
+      { nome: "Língua Portuguesa", id: "portugues", professor: "Profa. Tereza", alunos: 16 }
+    ]}
   ];
+
+  function updateRTurmaOptions() {
+    const ensino = document.getElementById('r-ensino').value;
+    const turmaSel = document.getElementById('r-turma');
+    if (!turmaSel) return;
+    const currentVal = turmaSel.value;
+    const filtered = ensino ? turmasData.filter(function(t) { return t.ensino === ensino; }) : turmasData;
+    const seen = new Set();
+    let html = '<option value="">Selecione</option>';
+    filtered.forEach(function(t) {
+      if (!seen.has(t.nome)) { seen.add(t.nome); html += '<option value="' + t.nome + '">' + t.nome + '</option>'; }
+    });
+    turmaSel.innerHTML = html;
+    if (currentVal) turmaSel.value = currentVal;
+  }
+
+  function updateTurmaOptions() {
+    const ensino = document.getElementById('ensino').value;
+    const turmaSel = document.getElementById('turma');
+    if (!turmaSel) return;
+    const currentVal = turmaSel.value;
+    const filtered = ensino ? turmasData.filter(function(t) { return t.ensino === ensino; }) : turmasData;
+    const seen = new Set();
+    let html = '<option value="">Selecione</option>';
+    filtered.forEach(function(t) {
+      if (!seen.has(t.nome)) { seen.add(t.nome); html += '<option value="' + t.nome + '">' + t.nome + '</option>'; }
+    });
+    turmaSel.innerHTML = html;
+    if (currentVal) turmaSel.value = currentVal;
+  }
 
   function filtrarTurmas() {
     const ensino = document.getElementById('ensino').value;
@@ -898,37 +1090,17 @@
     const turmaSelect = document.getElementById('turma');
     const turmaVal = turmaSelect.value;
     const turmaText = turmaSelect.options[turmaSelect.selectedIndex]?.text || '';
-
     let filtered = turmasData;
-
-    if (ensino) {
-      filtered = filtered.filter(t => t.ensino === ensino);
-    }
-
-    if (turmaVal && turmaText !== 'Selecione') {
-      filtered = filtered.filter(t => t.nome === turmaText);
-    }
-
-    // Flatten to disciplina-level cards
+    if (ensino) filtered = filtered.filter(t => t.ensino === ensino);
+    if (turmaVal && turmaText !== 'Selecione') filtered = filtered.filter(t => t.nome === turmaText);
     let results = [];
     filtered.forEach(t => {
       let discs = t.disciplinas;
-      if (disciplina) {
-        discs = discs.filter(d => d.id === disciplina);
-      }
+      if (disciplina) discs = discs.filter(d => d.id === disciplina);
       discs.forEach(d => {
-        results.push({
-          turmaNome: t.nome,
-          turno: t.turno,
-          ensino: t.ensino,
-          disciplinaNome: d.nome,
-          disciplinaId: d.id,
-          professor: d.professor,
-          alunos: d.alunos
-        });
+        results.push({ turmaNome: t.nome, turno: t.turno, ensino: t.ensino, disciplinaNome: d.nome, disciplinaId: d.id, professor: d.professor, alunos: d.alunos });
       });
     });
-
     renderTurmas(results);
   }
 
@@ -956,7 +1128,7 @@
 
     items.forEach(item => {
       const turnoLabel = item.turno === 'manha' ? 'Manhã' : item.turno === 'tarde' ? 'Tarde' : 'Noite';
-      const ensinoLabel = item.ensino === 'fundamental' ? 'Ensino Fundamental de 9 Anos' : 'Ensino Médio';
+      const ensinoLabel = item.ensino === 'fundamental' ? 'Ensino Fundamental de 9 Anos' : item.ensino === 'eja' ? 'EJA' : 'Ensino Médio';
       const wrapper = document.createElement('div');
       wrapper.className = 'conteudoItens-azul item';
       const card = document.createElement('div');
@@ -965,9 +1137,9 @@
       card.setAttribute('tabindex','0');
       card.innerHTML =
 
-        '<div class="card-turma-nome">' + item.turmaNome + ' <span style="font-weight:400;font-size:13px;color:#111">– ' + item.disciplinaNome + '</span></div>' +
+        '<div class="card-turma-nome">' + item.turmaNome + ' <span class="disciplina-meta">' + item.disciplinaNome + '</span></div>' +
         '<div class="card-turma-tipo-ensino"><div class="icon-info">i</div><span>' + ensinoLabel + '</span></div>' +
-        '<div class="card-turma-extra"><i class="fa-solid fa-chalkboard-user"></i> ' + item.professor + ' · <i class="fa-regular fa-clock"></i> ' + turnoLabel + '</div>';
+        '<div class="card-turma-extra"><i class="fa-solid fa-chalkboard-user"></i> ' + item.professor + ' <span style="color:#ccc">\u00B7</span> <i class="fa-regular fa-clock"></i> ' + turnoLabel + '</div>';
       card.addEventListener('click', function() {
         openStudentView(item.turmaNome, item.disciplinaNome, item.disciplinaId, item.professor, turnoLabel);
       });
@@ -977,19 +1149,34 @@
   }
 
   // ─── STUDENT DATA ───────────────────────────────────────
+  function generateAlunos(turmaNome, count) {
+    const sobrenomes = ['Silva','Santos','Oliveira','Souza','Lima','Pereira','Costa','Martins','Almeida','Rocha','Fernandes','Mendes','Barbosa','Ribeiro','Carvalho','Gomes','Dias','Teixeira','Araujo','Campos','Moreira','Nunes','Vieira','Batista','Cardoso','Reis','Faria','Azevedo','Lopes','Correia','Freitas','Duarte','Soares','Pires','Tavares','Moura','Bittencourt','Fonseca','Gama','Monteiro','Xavier','Peixoto','Guerra','Vargas','Nascimento','Siqueira','Chaves','Aguiar','Maia','Bastos','Fontes','Amaral','Salgado','Brito','Castro','Barros','Toledo','Rangel','Madureira','Dantas','Santoro','Muniz','Cordeiro','Lira','Quintero','Rezende','Vitoria','Carvalho','Guarani','Nogueira','Januario','Moreira','Galdino','Arantes','Sena','Montalvao','Chagas','Sales','Negreiros','Torres','Alcantara','Macena'];
+    const nomes = ['Ana','Bruno','Camila','Daniel','Eduarda','Felipe','Gabriela','Henrique','Isabela','João','Laura','Lucas','Mariana','Nathan','Olivia','Alice','Bernardo','Carla','Diego','Elisa','Fabio','Giovanna','Heitor','Igor','Julia','Kaique','Larissa','Miguel','Natalia','Otavio','Amanda','Bianca','Caio','Davi','Emanuelle','Fernando','Giovani','Helena','Iara','Kaua','Livia','Matheus','Nicolas','Paula','Andreia','Breno','Carolina','Danilo','Elenice','Erick','Fabiana','Gabriel','Hortencia','Ingrid','Joaquim','Leticia','Luan','Michele','Noah','Adriano','Aline','Bruna','Cesar','Clara','Diego','Elaine','Evelyn','Fabricio','Fernanda','Gustavo','Iasmin','Jeferson','Jessica','Leandro','Adriana','Augusto','Barbara','Caua','Cintia','Douglas','Eduardo','Erica','Francisco','Geovana','Hugo','Ivan','Juliana','Tereza','Antonio','Rosa','Paulo','Lucia','Kleber','Sandra','Rui'];
+    const result = [];
+    for (let i = 0; i < count; i++) {
+      const n = nomes[i % nomes.length];
+      const s = sobrenomes[(i + turmaNome.length) % sobrenomes.length];
+      result.push(n + ' ' + s);
+    }
+    return result;
+  }
+
+  function getAlunos(turmaNome) {
+    if (alunosPorTurma[turmaNome]) return alunosPorTurma[turmaNome];
+    return generateAlunos(turmaNome, 15);
+  }
+
   const alunosPorTurma = {
     "1º Ano A": ["Ana Beatriz Silva", "Bruno Oliveira", "Camila Santos", "Daniel Costa", "Eduarda Lima", "Felipe Souza", "Gabriela Martins", "Henrique Almeida", "Isabela Pereira", "João Pedro Rocha", "Laura Fernandes", "Lucas Mendes", "Mariana Barbosa", "Nathan Ribeiro", "Olivia Carvalho"],
     "1º Ano B": ["Alice Gomes", "Bernardo Dias", "Carla Teixeira", "Diego Araujo", "Elisa Campos", "Fabio Moreira", "Giovanna Nunes", "Heitor Vieira", "Igor Batista", "Julia Cardoso", "Kaique Reis", "Larissa Faria", "Miguel Azevedo", "Natalia Lopes", "Otavio Correia"],
     "2º Ano A": ["Amanda Freitas", "Bianca Duarte", "Caio Mendonca", "Davi Soares", "Emanuelle Pires", "Fernando Tavares", "Giovani Moura", "Helena Bittencourt", "Iara Fonseca", "João Vitor Gama", "Kaua Monteiro", "Livia Xavier", "Matheus Peixoto", "Nicolas Guerra", "Paula Vargas"],
     "2º Ano B": ["Andreia Costa", "Breno Assis", "Carolina Meireles", "Danilo Nascimento", "Elenice Porto", "Erick Siqueira", "Fabiana Chaves", "Gabriel Aguiar", "Hortencia Maia", "Ingrid Bastos", "Joaquim Fontes", "Leticia Amaral", "Luan Salgado", "Michele Brito", "Noah Castro"],
     "3º Ano A": ["Adriano Barros", "Aline Toledo", "Bruna Rangel", "Cesar Madureira", "Clara Dantas", "Diego Santoro", "Elaine Muniz", "Evelyn Cordeiro", "Fabricio Lira", "Fernanda Quintero", "Gustavo Rezende", "Iasmin Vitoria", "Jeferson Carvalho", "Jessica de Paula", "Leandro Guarana"],
-    "3º Ano B": ["Adriana Nogueira", "Andre Luiz Paz", "Augusto Cesar", "Barbara Januario", "Caua Moreira", "Cintia Galdino", "Douglas Arantes", "Eduardo Sena", "Erica Montalvao", "Francisco Chagas", "Geovana Sales", "Hugo Negreiros", "Ivan Torres", "Jessica Alcantara", "Juliana Macena"]
+    "3º Ano B": ["Adriana Nogueira", "Andre Luiz Paz", "Augusto Cesar", "Barbara Januario", "Caua Moreira", "Cintia Galdino", "Douglas Arantes", "Eduardo Sena", "Erica Montalvao", "Francisco Chagas", "Geovana Sales", "Hugo Negreiros", "Ivan Torres", "Jessica Alcantara", "Juliana Macena"],
+    "4º Ano A": ["Maria Eduarda Castro","Pedro Henrique Rocha","Ana Luiza Pires","Vinicius Moreira","Sophia Barbosa","Lucas Gabriel Costa","Julia Mendes","Thiago Vieira","Isabelly Teixeira","Rafael Campos","Manuela Araujo","Arthur Dias","Valentina Nunes","Enzo Gomes","Lara Faria"],
+    "4º Ano B": ["Heloisa Batista","João Vitor Cardoso","Lavínia Reis","Davi Lucca Azevedo","Emanuelly Lopes","Bernardo Correia","Sarah Freitas","Pedro Lucas Duarte","Clara Soares","Luiz Henrique Tavares","Cecília Moura","Gustavo Bittencourt","Alice Fonseca","Felipe Gama","Esther Monteiro"],
+    "5º Ano A": ["Liz Xavier","Leonardo Peixoto","Beatriz Guerra","Matheus Vargas","Manuela Nascimento","Davi Siqueira","Marina Chaves","Lorenzo Aguiar","Sophia Maia","Enzo Bastos","Maya Fontes","João Pedro Amaral","Luiza Salgado","Gabriel Brito","Eloá Castro"]
   };
-
-  // Generates deterministic student list for a turma
-  function getAlunos(turmaNome) {
-    return alunosPorTurma[turmaNome] || alunosPorTurma["1º Ano A"];
-  }
 
   // ─── RESPONSA / VACILO STATE ────────────────────────────
   const registros = []; // array of { id, turma, disciplinaId, aluno, tipo, data, horario, comportamento, obs }
@@ -1262,6 +1449,15 @@
           });
         });
         renderTurmas(initial);
+      }
+    }
+    if (tab === 'resumos') {
+      var rg = document.getElementById('resumoGrid');
+      if (!rg.children.length) {
+        document.getElementById('r-emptyState').style.display = 'block';
+        document.getElementById('r-emptyState').innerHTML = '<i class="fa-solid fa-chart-simple"></i><p>Selecione os filtros e clique em <strong>Pesquisar</strong> para visualizar os resumos.</p>';
+      } else {
+        renderResumos();
       }
     }
   }
@@ -1727,6 +1923,194 @@
     showToast(`${label} registrada para ${aluno}!`);
   }
 
+  /* ─── RESUMOS ──────────── */
+  function filtrarResumos() {
+    const ensino = document.getElementById('r-ensino').value;
+    const disciplina = document.getElementById('r-disciplina').value;
+    const turmaSelect = document.getElementById('r-turma');
+    const turmaVal = turmaSelect.value;
+    const turmaText = turmaSelect.options[turmaSelect.selectedIndex]?.text || '';
+    let filtered = turmasData;
+    if (ensino) filtered = filtered.filter(t => t.ensino === ensino);
+    if (turmaVal && turmaText !== 'Selecione') filtered = filtered.filter(t => t.nome === turmaText);
+    renderResumos(filtered, disciplina);
+  }
+
+  function renderResumos(filteredTurmas, disciplinaFiltro) {
+    const grid = document.getElementById('resumoGrid');
+    const empty = document.getElementById('r-emptyState');
+    if (!grid) return;
+    document.getElementById('resumoDetail').classList.remove('active');
+    grid.style.display = '';
+    if (!filteredTurmas) filteredTurmas = turmasData;
+    const stats = {};
+    registros.forEach(r => {
+      const turmaMatch = filteredTurmas.some(t => t.nome === r.turma);
+      const discMatch = !disciplinaFiltro || r.disciplinaId === disciplinaFiltro;
+      if (turmaMatch && discMatch) {
+        if (!stats[r.turma]) stats[r.turma] = { turma: r.turma, total: 0, responsas: 0, vacilos: 0 };
+        stats[r.turma].total++;
+        if (r.tipo === 'responsa') stats[r.turma].responsas++;
+        else if (r.tipo === 'vacilo') stats[r.turma].vacilos++;
+      }
+    });
+    const turmaSet = new Set();
+    filteredTurmas.forEach(t => turmaSet.add(t.nome));
+    const turmaNomes = [...turmaSet].sort();
+    if (turmaNomes.length === 0) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+      empty.innerHTML = '<i class="fa-solid fa-search"></i><p>Nenhuma turma encontrada com os filtros selecionados.</p>';
+      return;
+    }
+    empty.style.display = 'none';
+    let html = '';
+    turmaNomes.forEach(tn => {
+      const s = stats[tn] || { turma: tn, total: 0, responsas: 0, vacilos: 0 };
+      const saldo = s.responsas - s.vacilos;
+      html += '<div class="resumo-card" onclick="openResumoDetalhado(\'' + tn.replace(/'/g, "\\'") + '\')">' +
+        '<div class="resumo-card-title"><i class="fa-solid fa-people-group" style="color:var(--purple);font-size:16px"></i> ' + tn + '</div>' +
+        '<div class="resumo-stats">' +
+        '<div class="resumo-stat total"><div class="resumo-stat-value">' + s.total + '</div><div class="resumo-stat-label">Lanç.</div></div>' +
+        '<div class="resumo-stat resp"><div class="resumo-stat-value">' + s.responsas + '</div><div class="resumo-stat-label">Resp.</div></div>' +
+        '<div class="resumo-stat vac"><div class="resumo-stat-value">' + s.vacilos + '</div><div class="resumo-stat-label">Vac.</div></div>' +
+        '<div class="resumo-stat saldo"><div class="resumo-stat-value">' + (saldo > 0 ? '+' : '') + saldo + '</div><div class="resumo-stat-label">Saldo</div></div>' +
+        '</div></div>';
+    });
+    grid.innerHTML = html;
+  }
+
+  function openResumoDetalhado(turmaNome) {
+    document.getElementById('resumoGrid').style.display = 'none';
+    document.getElementById('resumoDetail').classList.add('active');
+    document.getElementById('rdTitle').textContent = turmaNome;
+    const turma = turmasData.find(t => t.nome === turmaNome);
+    const discNames = {};
+    if (turma) turma.disciplinas.forEach(d => discNames[d.id] = d.nome);
+    const discStats = {};
+    registros.forEach(r => {
+      if (r.turma === turmaNome) {
+        if (!discStats[r.disciplinaId]) discStats[r.disciplinaId] = { nome: discNames[r.disciplinaId] || r.disciplinaId, id: r.disciplinaId, total: 0, responsas: 0, vacilos: 0 };
+        discStats[r.disciplinaId].total++;
+        if (r.tipo === 'responsa') discStats[r.disciplinaId].responsas++;
+        else if (r.tipo === 'vacilo') discStats[r.disciplinaId].vacilos++;
+      }
+    });
+    if (turma) turma.disciplinas.forEach(d => {
+      if (!discStats[d.id]) discStats[d.id] = { nome: d.nome, id: d.id, total: 0, responsas: 0, vacilos: 0 };
+    });
+    const discIds = Object.keys(discStats).sort();
+    const turnoLabel = turma ? (turma.turno === 'manha' ? 'Manhã' : turma.turno === 'tarde' ? 'Tarde' : 'Noite') : '';
+    const ensinoLabel = turma ? (turma.ensino === 'fundamental' ? 'Ensino Fundamental' : turma.ensino === 'eja' ? 'EJA' : 'Ensino Médio') : '';
+    document.getElementById('rdSub').textContent = (ensinoLabel ? ensinoLabel + ' · ' : '') + (turnoLabel ? turnoLabel : '');
+    if (discIds.length === 0) {
+      document.getElementById('rdBody').innerHTML = '<div class="rd-empty"><i class="fa-regular fa-file-lines"></i><p>Nenhum registro encontrado para esta turma.</p></div>';
+      document.getElementById('rdFooter').innerHTML = '<span>0 disciplinas</span><span>Nenhum lançamento</span>';
+      return;
+    }
+    let bodyHtml = '';
+    let totalGeral = 0, totalResp = 0, totalVac = 0;
+    discIds.forEach(id => {
+      const ds = discStats[id];
+      const saldo = ds.responsas - ds.vacilos;
+      totalGeral += ds.total; totalResp += ds.responsas; totalVac += ds.vacilos;
+      const saldoClass = saldo > 0 ? 'positivo' : saldo < 0 ? 'negativo' : 'zero';
+      const saldoSign = saldo > 0 ? '+' : '';
+      bodyHtml += '<div class="rd-row"><span class="r-nome">' + ds.nome + '</span><span class="r-count">' + ds.total + '</span><span class="r-resp">' + ds.responsas + '</span><span class="r-vac">' + ds.vacilos + '</span><span class="r-saldo ' + saldoClass + '">' + saldoSign + saldo + '</span></div>';
+    });
+    const saldoGeral = totalResp - totalVac;
+    const saldoGC = saldoGeral > 0 ? 'positivo' : saldoGeral < 0 ? 'negativo' : 'zero';
+    const saldoSign = saldoGeral > 0 ? '+' : '';
+    document.getElementById('rdBody').innerHTML = bodyHtml;
+    document.getElementById('rdFooter').innerHTML =
+      '<span><strong>' + discIds.length + '</strong> disciplina(s)</span>' +
+      '<span><span class="dot resp"></span> <strong>' + totalResp + '</strong> Resp. <span class="dot vac" style="margin-left:12px"></span> <strong>' + totalVac + '</strong> Vac. &nbsp; <strong>Saldo: <span class="' + saldoGC + '">' + saldoSign + saldoGeral + '</span></strong></span>';
+
+    /* ─── Por Aluno ─── */
+    var alunos = getAlunos(turmaNome);
+    var alunoStats = {};
+    alunos.forEach(function(a) { alunoStats[a] = { nome: a, responsas: 0, vacilos: 0 }; });
+    registros.forEach(function(r) {
+      if (r.turma === turmaNome && alunoStats[r.aluno]) {
+        if (r.tipo === 'responsa') alunoStats[r.aluno].responsas++;
+        else if (r.tipo === 'vacilo') alunoStats[r.aluno].vacilos++;
+      }
+    });
+    var studentHtml = '', totalSResp = 0, totalSVac = 0;
+    alunos.forEach(function(a) {
+      var s = alunoStats[a];
+      if (!s) return;
+      totalSResp += s.responsas; totalSVac += s.vacilos;
+      var saldo = s.responsas - s.vacilos;
+      var sc = saldo > 0 ? 'positivo' : saldo < 0 ? 'negativo' : 'zero';
+      var ss = saldo > 0 ? '+' : '';
+      studentHtml += '<div class="rd-row"><span class="r-nome" style="flex:2;cursor:pointer;color:var(--purple);text-decoration:underline;text-decoration-color:transparent;transition:all .2s" onmouseover="this.style.textDecorationColor=\'var(--purple)\'" onmouseout="this.style.textDecorationColor=\'transparent\'" onclick="openResumoAluno(\'' + a.replace(/'/g, "\\'") + '\')">' + a + '</span><span class="r-resp">' + s.responsas + '</span><span class="r-vac">' + s.vacilos + '</span><span class="r-saldo ' + sc + '">' + ss + saldo + '</span></div>';
+    });
+    if (alunos.length > 0) {
+      document.getElementById('rdStudentSection').style.display = 'block';
+      document.getElementById('rdStudentBody').innerHTML = studentHtml;
+    }
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').style.display = 'none';
+    var search = document.getElementById('studentSearch');
+    if (search) search.style.display = '';
+    var header = document.querySelector('.modal-student-header');
+    if (header) header.style.display = '';
+  }
+
+  function openResumoAluno(alunoNome) {
+    var turmaNome = document.getElementById('rdTitle').textContent;
+    var turma = turmasData.find(function(t) { return t.nome === turmaNome; });
+    var discGroups = {};
+    registros.forEach(function(r) {
+      if (r.turma === turmaNome && r.aluno === alunoNome) {
+        if (!discGroups[r.disciplinaId]) discGroups[r.disciplinaId] = { nome: '', id: r.disciplinaId, responsas: 0, vacilos: 0, registros: [] };
+        discGroups[r.disciplinaId].registros.push(r);
+        if (r.tipo === 'responsa') discGroups[r.disciplinaId].responsas++;
+        else if (r.tipo === 'vacilo') discGroups[r.disciplinaId].vacilos++;
+      }
+    });
+    if (turma) turma.disciplinas.forEach(function(d) {
+      if (!discGroups[d.id]) discGroups[d.id] = { nome: d.nome, id: d.id, responsas: 0, vacilos: 0, registros: [] };
+      discGroups[d.id].nome = d.nome;
+    });
+    var discIds = Object.keys(discGroups).sort();
+    var bodyHtml = '';
+    var totalResp = 0, totalVac = 0;
+    discIds.forEach(function(id) {
+      var dg = discGroups[id];
+      totalResp += dg.responsas; totalVac += dg.vacilos;
+      var saldo = dg.responsas - dg.vacilos;
+      var sc = saldo > 0 ? 'positivo' : saldo < 0 ? 'negativo' : 'zero';
+      var ss = saldo > 0 ? '+' : '';
+      var recordsHtml = '';
+      dg.registros.forEach(function(r) {
+        var badgeIcon = r.tipo === 'responsa' ? 'fa-plus' : 'fa-minus';
+        recordsHtml += '<div style="display:flex;align-items:center;gap:8px;padding:4px 0 4px 20px;font-size:12px;color:var(--mid);border-bottom:1px solid #f0f0f0"><span class="vr-badge ' + r.tipo + '" style="width:18px;height:18px;font-size:9px"><i class="fa-solid ' + badgeIcon + '"></i></span><span style="flex:1"><strong>' + (r.comportamento || '—') + '</strong>' + (r.obs ? '<br><span style="color:#888;font-size:11px">' + r.obs + '</span>' : '') + '</span><span style="color:#999">' + r.data + ' · ' + (r.horario || '—') + '</span></div>';
+      });
+      bodyHtml += '<div style="margin-bottom:8px"><div class="rd-row" style="font-weight:600;background:#f9f9fb;border-radius:6px;cursor:pointer" onclick="var n=this.nextElementSibling;n.style.display=n.style.display===\'none\'?\'\':\'none\'"><span class="r-nome">' + (dg.nome || id) + '</span><span class="r-resp">' + dg.responsas + '</span><span class="r-vac">' + dg.vacilos + '</span><span class="r-saldo ' + sc + '">' + ss + saldo + '</span></div><div style="display:none">' + recordsHtml + '</div></div>';
+    });
+    document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-user-graduate" style="color:var(--purple)"></i> ' + alunoNome;
+    document.getElementById('modalSub').textContent = turmaNome + ' · ' + totalResp + ' Resp., ' + totalVac + ' Vac.';
+    document.getElementById('studentSearch').style.display = 'none';
+    var header = document.querySelector('.modal-student-header');
+    if (header) header.style.display = 'none';
+    document.getElementById('studentList').innerHTML =
+      '<div style="margin-top:4px">' +
+      '<div class="rd-row" style="font-weight:600;font-size:12px;color:#999;padding:6px 12px"><span class="r-nome">Disciplina</span><span class="r-resp">Resp.</span><span class="r-vac">Vac.</span><span class="r-saldo" style="color:var(--mid)">Saldo</span></div>' +
+      bodyHtml + '</div>';
+    document.getElementById('modalSummary').innerHTML = '<span><strong>' + totalResp + '</strong> Responsa</span><span><strong>' + totalVac + '</strong> Vacilo</span><span>Saldo: <strong>' + (totalResp - totalVac) + '</strong></span>';
+    document.getElementById('modalOverlay').style.display = 'flex';
+  }
+
+  function closeResumoDetalhado() {
+    document.getElementById('resumoGrid').style.display = '';
+    document.getElementById('resumoDetail').classList.remove('active');
+    document.getElementById('rdStudentSection').style.display = 'none';
+  }
+
   function showToast(msg) {
     const el = document.getElementById('regToast');
     el.textContent = msg;
@@ -1753,6 +2137,10 @@
     });
     renderTurmas(initial);
   });
+
+  // Initialize turma selects
+  updateTurmaOptions();
+  updateRTurmaOptions();
 </script>
 
 </body>
