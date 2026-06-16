@@ -36,9 +36,8 @@
     /* APP BAR */
     .app-bar{background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:52px;flex-shrink:0;position:sticky;top:0;z-index:200;box-shadow:0 1px 4px rgba(0,0,0,.05)}
     .app-logo{display:flex;align-items:center;gap:10px}
-    .app-logo-text{font-weight:800;font-size:15px;color:var(--text);line-height:1.15}
+
     .app-profile{display:flex;align-items:center;gap:10px}
-    .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1565D8,#64b5f6);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
     .profile-name{font-size:13px;font-weight:600;color:var(--text)}
     .profile-sub{font-size:11px;color:var(--mid)}
     .profile-school{font-size:11px;color:var(--light)}
@@ -130,27 +129,24 @@
 
     .conteudoItens{display:contents}
     .conteudoItens-azul.item{
-      border-radius:12px;border:1px solid #eef0f2;
-      box-shadow:0 1px 3px rgba(0,0,0,0.04);
-      transition:box-shadow .25s ease,transform .25s ease,border-color .25s ease;
-      display:flex;flex-direction:column;gap:4px;
+      display:flex;flex-direction:column;gap:3px;
       flex:1 0 0;align-self:stretch;width:100%;
-      padding:18px 20px;background:#fff;
-      text-decoration:none;position:relative;overflow:hidden
+      padding:18px 20px;border-radius:12px;
+      background-color:#fff;
+      border:1px solid #eef0f2;
+      box-shadow:0 1px 3px rgba(0,0,0,0.04);
+      text-decoration:none;overflow:hidden;
+      cursor:pointer;transition:box-shadow .25s ease,transform .25s ease,border-color .25s ease
     }
-    .conteudoItens-azul.item::before{
-      content:'';position:absolute;top:0;left:0;right:0;height:4px;
-      background:linear-gradient(90deg,#8E5CF7,#b388ff);border-radius:12px 12px 0 0
-    }
-    .card-turma{cursor:pointer;display:flex;flex-direction:column;gap:8px;position:relative;z-index:1}
-
+    .conteudoItens-azul.item:hover{box-shadow:0 4px 16px rgba(142,92,247,0.15);transform:translateY(-2px);border-color:#d0b0ff}
+    .card-turma{cursor:pointer;display:flex;flex-direction:column;gap:6px}
     .card-turma-nome{font-size:15px;font-weight:600;color:#111;line-height:1.4;text-overflow:ellipsis}
-    .card-turma-nome .disciplina-meta{font-weight:400;font-size:13px;color:#6b6b6b}
-    .card-turma-tipo-ensino{display:flex;align-items:center;gap:6px;font-size:12px;color:#6b6b6b}
-    .card-turma-tipo-ensino .icon-info{width:16px;height:16px;border-radius:50%;background:#8E5CF7;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .card-turma-extra{font-size:12px;color:#444;margin-top:4px}
-    .card-turma-extra i{color:#8E5CF7;width:16px;text-align:center}
-    .conteudoItens-azul .item:hover{box-shadow:0 4px 16px rgba(142,92,247,0.15);transform:translateY(-2px);border-color:#d0b0ff}
+    .disciplina-meta{display:flex;align-items:center;gap:6px;font-size:13px;color:#6b6b6b;font-weight:400}
+    .card-turma-tipo-ensino{display:flex;align-items:center;gap:6px;font-size:13px;color:#6b6b6b;font-weight:400}
+    .icon-info{width:18px;height:18px;border-radius:50%;background:#f0e6ff;color:#8E5CF7;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+    .card-turma-extra{display:flex;align-items:center;gap:16px;font-size:12px;color:#888}
+    .card-turma-extra i{width:14px;text-align:center;color:#8E5CF7}
+
     .empty-state{text-align:center;padding:60px 20px;color:var(--light)}
     .empty-state i{font-size:48px;color:#ddd;margin-bottom:12px;display:block}
     .empty-state p{font-size:14px}
@@ -175,7 +171,6 @@
     .modal-body{padding:0 24px;overflow-y:auto;max-height:60vh}
     .modal-student-header{display:flex;align-items:center;padding:14px 0 10px;font-size:12px;font-weight:600;color:var(--light);border-bottom:1px solid var(--border)}
     .modal-student-header .s-name{flex:1}
-    .modal-student-header .s-view{width:34px;display:flex;align-items:center;justify-content:center}
     .modal-student-header .s-actions{display:flex;align-items:center;gap:8px;width:130px;justify-content:flex-end}
     .student-row{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid #f0f1f4;transition:background .1s}
     .student-row:hover{background:#fafbff}
@@ -190,6 +185,8 @@
     .btn-responsa .count,.btn-vacilo .count{position:absolute;top:-6px;right:-6px;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px;box-shadow:0 1px 4px rgba(0,0,0,.15)}
     .btn-responsa .count{background:#2e7d32;color:#fff}
     .btn-vacilo .count{background:#e65100;color:#fff}
+    .btn-view{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:12px;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+    .btn-view:hover{background:#f5f3ff;color:#8E5CF7;border-color:#8E5CF7}
     .modal-footer{padding:14px 24px 20px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);margin-top:4px}
     .modal-summary{font-size:12px;color:var(--mid)}
     .modal-summary strong{color:var(--text)}
@@ -198,9 +195,6 @@
     .modal-filter-student{display:flex;align-items:center;gap:8px;padding:16px 0 12px}
     .modal-filter-student input{flex:1;font-family:'Open Sans',sans-serif;font-size:13px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;outline:none}
     .modal-filter-student input:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(142,92,247,.12)}
-    .btn-view{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:13px;color:var(--mid);display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
-    .btn-view:hover{border-color:var(--purple);color:var(--purple);background:#f8f6ff}
-    .s-view{width:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 
     /* REGISTRO MODAL */
     .reg-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1000;align-items:center;justify-content:center;padding:20px}
@@ -230,6 +224,14 @@
     .btn-reg-confirm.vacilo:hover{background:#bf360c}
     .reg-toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#323232;color:#fff;font-size:13px;padding:12px 24px;border-radius:8px;z-index:2000;opacity:0;transition:opacity .3s;pointer-events:none}
     .reg-toast.show{opacity:1}
+    .alert-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:3000;align-items:center;justify-content:center;animation:fadeIn .2s ease}
+    .alert-overlay.open{display:flex}
+    .alert-modal{background:#fff;border-radius:16px;width:90%;max-width:400px;box-shadow:0 12px 48px rgba(0,0,0,0.2);overflow:hidden;animation:modalIn .25s ease;text-align:center;padding:36px 28px 24px}
+    .alert-modal .alert-icon{font-size:48px;color:#e65100;margin-bottom:12px}
+    .alert-modal h3{margin:0 0 8px;font-size:18px;color:#111}
+    .alert-modal p{margin:0 0 24px;font-size:14px;color:#666;line-height:1.5}
+    .alert-modal button{background:var(--purple,#8E5CF7);color:#fff;border:none;border-radius:10px;padding:10px 32px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .2s}
+    .alert-modal button:hover{background:#7a4be0}
 
     /* STUDENT VIEW */
     .student-view{display:none;flex-direction:column;gap:0;animation:fadeIn .2s ease}
@@ -255,13 +257,12 @@
     .sv-th .th-name{flex:1}
     .sv-th .th-actions{display:flex;flex-direction:column;align-items:flex-end;gap:4px;width:180px}
     .sv-th .th-actions .ta-top{display:flex;align-items:center;gap:5px}
-    .sv-th .th-view{width:36px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--light)}
-    .sv-row{display:flex;align-items:center;padding:11px 20px;border-bottom:1px solid #f0f1f4;transition:background .1s}
+    .marcar-label{font-size:11px;color:#666;font-weight:500;margin-right:2px}
+    .sv-row{display:flex;align-items:center;padding:11px 20px;border-bottom:1px solid #f0f1f4;transition:background .1s;gap:10px}
     .sv-row:last-child{border-bottom:none}
     .sv-row:hover{background:#fafbff}
-    .sv-row .sv-name{flex:1;font-size:14px;font-weight:500;color:var(--text)}
+    .sv-row .sv-name{flex:1;font-size:14px;font-weight:500;color:var(--text);min-width:0;word-break:break-word}
     .sv-row .sv-actions{display:flex;align-items:center;gap:8px;width:110px;justify-content:flex-end}
-    .sv-row .sv-view{width:36px;display:flex;align-items:center;justify-content:center}
     .sv-footer{background:#fff;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--mid)}
     .sv-footer strong{color:var(--text)}
     .sv-footer .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 2px}
@@ -399,15 +400,9 @@
 <!-- APP BAR -->
 <div class="app-bar">
   <div class="app-logo">
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 22L20 8L32 22" stroke="#e50303" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M13 17.5L20 10L27 17.5V34H13V17.5Z" fill="#e50303" opacity="0.12"/>
-      <path d="M15 34V25H25V34" stroke="#e50303" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div class="app-logo-text">SALA DO<br>FUTURO</div>
+    <img src="https://homologacaosaladofuturoprofessor.educacao.sp.gov.br/assests/logo-sala-do-futuro.png" alt="Sala do Futuro" height="42">
   </div>
   <div class="app-profile">
-    <div class="avatar">AS</div>
     <div>
       <div class="profile-name">Aline Da Silva Amorim</div>
       <div class="profile-sub">Sucor - Coegd - Cogdp</div>
@@ -743,9 +738,9 @@
                 <div class="sv-table">
                   <div class="sv-th">
                     <span class="th-name">Aluno</span>
-                    <span class="th-view"><i class="fa-regular fa-eye"></i></span>
                     <span class="th-actions">
                       <span class="ta-top">
+                        <span class="marcar-label">Marcar todos:</span>
                         <span style="font-size:10px;color:#fff;background:#2e7d32;border-radius:5px;padding:3px 9px;font-weight:600;cursor:pointer;transition:opacity .15s;display:inline-flex;align-items:center;gap:4px" onclick="marcarTodos('responsa')" title="Marcar todos como Responsa" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'"><i class="fa-solid fa-check"></i> Resp.</span>
                         <span style="font-size:10px;color:#fff;background:#e65100;border-radius:5px;padding:3px 9px;font-weight:600;cursor:pointer;transition:opacity .15s;display:inline-flex;align-items:center;gap:4px" onclick="marcarTodos('vacilo')" title="Marcar todos como Vacilo" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'"><i class="fa-solid fa-check"></i> Vac.</span>
                       </span>
@@ -809,7 +804,6 @@
       </div>
       <div class="modal-student-header">
         <span class="s-name">Aluno</span>
-        <span class="s-view"><i class="fa-regular fa-eye" style="font-size:11px"></i></span>
         <span class="s-actions">
           <span style="font-size:11px;color:#2e7d32;font-weight:600"><i class="fa-solid fa-plus"></i> Resp.</span>
           <span style="font-size:11px;color:#e65100;font-weight:600"><i class="fa-solid fa-minus"></i> Vac.</span>
@@ -955,6 +949,15 @@
 </div>
 
 <div class="reg-toast" id="regToast"></div>
+
+<div class="alert-overlay" id="alertOverlay" onclick="if(event.target===this)closeAlertModal()">
+  <div class="alert-modal">
+    <div class="alert-icon">&#9888;&#65039;</div>
+    <h3>Atenção</h3>
+    <p id="alertMessage">Selecione o horário da aula antes de registrar.</p>
+    <button onclick="closeAlertModal()">OK</button>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -1234,10 +1237,10 @@
       card.setAttribute('role','button');
       card.setAttribute('tabindex','0');
       card.innerHTML =
-
-        '<div class="card-turma-nome">' + item.turmaNome + ' <span class="disciplina-meta">' + item.disciplinaNome + '</span></div>' +
-        '<div class="card-turma-tipo-ensino"><div class="icon-info">i</div><span>' + ensinoLabel + '</span></div>' +
-        '<div class="card-turma-extra"><i class="fa-solid fa-chalkboard-user"></i> ' + item.professor + ' <span style="color:#ccc">\u00B7</span> <i class="fa-regular fa-clock"></i> ' + turnoLabel + '</div>';
+        '' +
+        '<div class="card-turma-nome">' + item.turmaNome + '</div>' +
+        '<div class="disciplina-meta">' + item.disciplinaNome + '</div>' +
+        '<div class="card-turma-tipo-ensino"><div class="icon-info">i</div> <span>' + ensinoLabel + '</span></div>';
       card.addEventListener('click', function() {
         openStudentView(item.turmaNome, item.disciplinaNome, item.disciplinaId, item.professor, turnoLabel);
       });
@@ -1516,7 +1519,7 @@
       totalResp += respCount;
       totalVac += vacCount;
       const sanitized = aluno.replace(/'/g, "\\'");
-      html += '<div class="sv-row"><div class="sv-name">' + aluno + '</div><div class="sv-view"><button class="btn-view" onclick="openViewModal(\'' + sanitized + '\')" title="Visualizar registros"><i class="fa-regular fa-eye"></i></button></div><div class="sv-actions"><button class="btn-responsa" onclick="handleThumbClick(\'' + turmaNome + '\',\'' + disciplinaId + '\',\'' + sanitized + '\',\'responsa\',this)"><i class="fa-solid fa-plus"></i>' + (respCount > 0 ? '<span class="count">' + respCount + '</span>' : '') + '</button><button class="btn-vacilo" onclick="handleThumbClick(\'' + turmaNome + '\',\'' + disciplinaId + '\',\'' + sanitized + '\',\'vacilo\',this)"><i class="fa-solid fa-minus"></i>' + (vacCount > 0 ? '<span class="count">' + vacCount + '</span>' : '') + '</button></div></div>';
+      html += '<div class="sv-row"><div class="sv-name">' + aluno + '</div><button class="btn-view" onclick="openViewModal(\'' + sanitized + '\')" title="Ver registros do aluno"><i class="fa-solid fa-eye"></i></button><div class="sv-actions"><button class="btn-responsa" onclick="handleThumbClick(\'' + turmaNome + '\',\'' + disciplinaId + '\',\'' + sanitized + '\',\'responsa\',this)"><i class="fa-solid fa-plus"></i>' + (respCount > 0 ? '<span class="count">' + respCount + '</span>' : '') + '</button><button class="btn-vacilo" onclick="handleThumbClick(\'' + turmaNome + '\',\'' + disciplinaId + '\',\'' + sanitized + '\',\'vacilo\',this)"><i class="fa-solid fa-minus"></i>' + (vacCount > 0 ? '<span class="count">' + vacCount + '</span>' : '') + '</button></div></div>';
     });
     container.innerHTML = html;
     document.getElementById('svFooter').innerHTML = '<span><span class="dot resp"></span> <strong>' + totalResp + '</strong> Responsa  <span class="dot vac" style="margin-left:12px"></span> <strong>' + totalVac + '</strong> Vacilo</span><span>' + alunos.length + ' aluno(s)</span>';
@@ -1624,7 +1627,7 @@
       const initials = aluno.split(' ').map(function(w) { return w[0]; }).join('').slice(0, 2).toUpperCase();
       const color = avatars[i % avatars.length];
       const sanitized = aluno.replace(/'/g, "\\'");
-      html += '<div class="student-row"><div class="s-avatar" style="background:' + color + '">' + initials + '</div><div class="s-name">' + aluno + '</div><div class="s-view"><button class="btn-view" onclick="openViewModal(\'' + sanitized + '\')" title="Visualizar registros"><i class="fa-regular fa-eye"></i></button></div><div class="s-actions"><button class="btn-responsa" onclick="openRegModal(\'' + turmaNome + '\',\'' + disciplinaId + '\',\'' + sanitized + '\',\'responsa\')"><i class="fa-solid fa-plus"></i>' + (respCount > 0 ? '<span class="count">' + respCount + '</span>' : '') + '</button><button class="btn-vacilo" onclick="openRegModal(\'' + turmaNome + '\',\'' + disciplinaId + '\',\'' + sanitized + '\',\'vacilo\')"><i class="fa-solid fa-minus"></i>' + (vacCount > 0 ? '<span class="count">' + vacCount + '</span>' : '') + '</button></div></div>';
+      html += '<div class="student-row"><div class="s-avatar" style="background:' + color + '">' + initials + '</div><div class="s-name">' + aluno + '</div><div class="s-actions"><button class="btn-responsa" onclick="openRegModal(\'' + turmaNome + '\',\'' + disciplinaId + '\',\'' + sanitized + '\',\'responsa\')"><i class="fa-solid fa-plus"></i>' + (respCount > 0 ? '<span class="count">' + respCount + '</span>' : '') + '</button><button class="btn-vacilo" onclick="openRegModal(\'' + turmaNome + '\',\'' + disciplinaId + '\',\'' + sanitized + '\',\'vacilo\')"><i class="fa-solid fa-minus"></i>' + (vacCount > 0 ? '<span class="count">' + vacCount + '</span>' : '') + '</button></div></div>';
     });
     container.innerHTML = html;
     document.getElementById('modalSummary').innerHTML = '<span class="resp-dot"></span> <strong>' + totalResp + '</strong> Responsa<span class="vac-dot" style="margin-left:14px"></span> <strong>' + totalVac + '</strong> Vacilo · ' + alunos.length + ' aluno(s)';
@@ -1637,7 +1640,7 @@
     const svHorario = document.getElementById('svHorario');
     const svHorarioVal = svHorario?.value;
     if (!svDate) { showToast('Selecione a data da aula antes de registrar.'); return; }
-    if (!svHorarioVal) { showToast('Selecione o horário da aula antes de registrar.'); return; }
+    if (!svHorarioVal) { showAlertModal('Selecione o horário da aula antes de registrar.'); return; }
     openRegModal(turma, discId, aluno, tipo);
   }
 
@@ -1647,7 +1650,7 @@
     const svHorarioVal = svHorario?.value;
     const svHorarioText = svHorario?.options[svHorario?.selectedIndex]?.text || '';
     if (!svDate) { showToast('Selecione a data da aula antes de registrar.'); return; }
-    if (!svHorarioVal) { showToast('Selecione o horário da aula antes de registrar.'); return; }
+    if (!svHorarioVal) { showAlertModal('Selecione o horário da aula antes de registrar.'); return; }
     const { turmaNome, disciplinaId } = modalState;
     const alunos = getAlunos(turmaNome);
     const search = document.getElementById('studentSearchFull').value.toLowerCase().trim();
@@ -1724,7 +1727,7 @@
     const svHorarioVal = svHorario?.value;
     const svHorarioText = svHorario?.options[svHorario?.selectedIndex]?.text || '';
     if (!svDate) { showToast('Selecione a data da aula antes de registrar.'); return; }
-    if (!svHorarioVal) { showToast('Selecione o horário da aula antes de registrar.'); return; }
+    if (!svHorarioVal) { showAlertModal('Selecione o horário da aula antes de registrar.'); return; }
     regModalState = { turma, disciplinaId: discId, aluno, tipo };
     document.getElementById('regStudentName').textContent = aluno;
     const badge = document.getElementById('regTipoBadge');
@@ -1781,6 +1784,14 @@
     el.classList.add('show');
     clearTimeout(el._timeout);
     el._timeout = setTimeout(function() { el.classList.remove('show'); }, 2500);
+  }
+
+  function showAlertModal(msg) {
+    document.getElementById('alertMessage').textContent = msg;
+    document.getElementById('alertOverlay').classList.add('open');
+  }
+  function closeAlertModal() {
+    document.getElementById('alertOverlay').classList.remove('open');
   }
 
   /* ─── RESUMOS ──────────── */
